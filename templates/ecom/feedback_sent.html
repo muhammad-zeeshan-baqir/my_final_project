@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+
+
+
+  {%if request.user.is_authenticated%}
+    {% include "ecom/customer_navbar.html" %}
+  {%else%}
+    {% include "ecom/navbar.html" %}
+  {%endif%}
+<div style="text-align:center;height: calc(100vh - 290px);display: flex;flex-direction: column;justify-content: center;align-items: center">
+
+<h3 style="text-align:center;">Your Feedback Sent Succesfully !</h3>
+<br>
+  <img src="{% static "images/success.png" %}"  style="width:100px; height:100px; ">
+</div>
+  {% include "ecom/footer.html" %}
