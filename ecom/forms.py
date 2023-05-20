@@ -18,10 +18,22 @@ class CustomerForm(forms.ModelForm):
         fields = ['address', 'mobile', 'profile_pic']
 
 
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = models.Category
+        fields = ['name']
+
+
+class BrandForm(forms.ModelForm):
+    class Meta:
+        model = models.Brand
+        fields = ['name']
+
+
 class ProductForm(forms.ModelForm):
     class Meta:
         model = models.Product
-        fields = ['name', 'price', 'description', 'product_image']
+        fields = ['name', 'price', 'description', 'product_image', 'category', 'brand']
 
 
 # address of shipment

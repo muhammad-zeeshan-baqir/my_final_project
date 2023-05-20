@@ -6,8 +6,9 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from django.conf import settings
 
-from .forms import CustomerUserForm, CustomerForm, ProductForm, OrderForm, FeedbackForm, AddressForm, ContactusForm
-from .models import Product, Customer, Orders, Feedback
+from .forms import CustomerUserForm, CustomerForm, ProductForm, OrderForm, FeedbackForm, AddressForm, ContactusForm, \
+    CategoryForm, BrandForm
+from .models import Product, Customer, Orders, Feedback, Category, Brand
 import io
 from xhtml2pdf import pisa
 from django.template.loader import get_template
@@ -304,7 +305,7 @@ def send_feedback_view(request):
         if feedbackForm.is_valid():
             feedbackForm.save()
             return render(request, 'ecom/feedback_sent.html')
-    return render(request, 'ecom/send_feedback.html', {'feedbackForm': feedbackForm})
+    return render(request, 'ecom/feedback_sent.html', {'feedbackForm': feedbackForm})
 
 
 @login_required(login_url='customer_login')
@@ -479,3 +480,25 @@ def contactus_view(request):
                       fail_silently=False)
             return render(request, 'ecom/contactus_success.html')
     return render(request, 'ecom/contactus.html', {'form': sub})
+
+
+def category_view(request):
+    cat = CategoryForm()
+    category = Category.objects.all()
+    if request.method == 'POST':
+        cat = CategoryForm(request.POST)
+        if cat.is_valid():
+            cat.save()
+            return render(request, 'ecom/index.html', {'category': category})
+    return render(request, 'ecom/index.html', {'form': cat})
+
+
+def brand_view(request):
+    bran = BrandForm()
+    brand = Brand.objects.all()
+    if request.method == 'POST':
+        cat = BrandForm(request.POST)
+        if cat.is_valid():
+            cat.save()
+            return render(request, 'ecom/index.html', {'brand': brand})
+    return render(request, 'ecom/index.html', {'form': bran})

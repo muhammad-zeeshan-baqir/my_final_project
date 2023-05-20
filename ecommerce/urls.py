@@ -6,7 +6,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_view, name=''),
-    path('afterlogin', views.afterlogin_view, name='after_login'),
+    path('afterlogin', views.after_login_view, name='after_login'),
     path('logout', LogoutView.as_view(template_name='ecom/logout.html'), name='logout'),
     path('aboutus', views.aboutus_view),
     path('contactus', views.contactus_view, name='contactus'),
@@ -44,5 +44,7 @@ urlpatterns = [
     path('remove-from-cart/<int:pk>', views.remove_from_cart_view, name='remove-from-cart'),
     path('customer-address', views.customer_address_view, name='customer-address'),
     path('payment-success', views.payment_success_view, name='payment-success'),
+    path('add_category', views.category_view, name='add-category'),
+    path('add_brand', views.brand_view, name='add-brand'),
 
 ]
