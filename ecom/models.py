@@ -50,7 +50,7 @@ class Orders(models.Model):
     STATUS = (
         ('Pending', 'Pending'),
         ('Order Confirmed', 'Order Confirmed'),
-        ('Out for Delivery', 'Out for Delivery'),
+        ('On The Way', 'On The Way'),
         ('Delivered', 'Delivered'),
     )
     customer = models.ForeignKey('Customer', on_delete=models.CASCADE, null=True)
