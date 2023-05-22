@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>About Us</title>
+
+  <style media="screen">
+    .footer{
+      position: fixed;
+    }
+  </style>
+</head>
+
+<body style="background: linear-gradient(to right, #b92b27, #1565c0)">
+  {%if request.user.is_authenticated%}
+    {% include "ecom/customer_navbar.html" %}
+  {%else%}
+    {% include "ecom/navbar.html" %}
+  {%endif%}
+<div class="page-layout" style="display: flex; align-items: center; justify-content: center;min-height: calc(100vh - 254px);F">
+    <h3 style="text-align:center; margin: 0; color: #fff">“I don’t create companies for the sake of creating companies, but to get things done.” </h3>
+</div>
+
+  {% include "ecom/footer.html" %}
+</body>
+</html>

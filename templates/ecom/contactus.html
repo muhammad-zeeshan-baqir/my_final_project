@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Contact Us</title>
+    <style>
+        .box {
+        width: 500px;
+        padding: 40px;
+        color: #FFFFFF;
+        background: #191919;
+        text-align: center;
+        transition: 0.25s;
+        margin-top: 66px;
+            margin-bottom: 20px;
+}
+
+.box input[type="text"],
+.box input[type="email"],
+.box textarea{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 10px 10px;
+    width: 300px;
+    outline: none;
+    color: white;
+    border-radius: 4px;
+    transition: 0.25s
+}
+
+.box h1 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500
+}
+
+.box input[type="text"]:focus,
+.box input[type="password"]:focus {
+    width: 300px;
+    border-color: #2ecc71
+}
+
+.box input[type="submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 4px;
+    transition: 0.25s;
+    cursor: pointer
+}
+
+.box input[type="submit"]:hover {
+    background: #2ecc71
+}
+    </style>
+</head>
+
+<body style="background: linear-gradient(to right, #b92b27, #1565c0)">
+
+  {%if request.user.is_authenticated%}
+    {% include "ecom/customer_navbar.html" %}
+  {%else%}
+    {% include "ecom/navbar.html" %}
+  {%endif%}
+
+  <center class="page-layout" style="min-height: calc(100vh - 157px);">
+    <h3 class='alert alert-success' style="margin: 0;border: none;background-color: black;color: white;border-top: 2px solid green">Send Us Your Valuable Feedback !</h3>
+
+    <form class="box" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <div>
+        {{ form.as_p }}
+        </div>
+        <input type="submit" value="Send Message" class='btn btn-primary btn-lg'>
+      </div>
+    </form>
+  </center>
+  {% include "ecom/footer.html" %}
+</body>
+</html>

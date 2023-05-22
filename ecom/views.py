@@ -305,7 +305,7 @@ def send_feedback_view(request):
         if feedbackForm.is_valid():
             feedbackForm.save()
             return render(request, 'ecom/feedback_sent.html')
-    return render(request, 'ecom/feedback_sent.html', {'feedbackForm': feedbackForm})
+    return render(request, 'ecom/send_feedback.html', {'feedbackForm': feedbackForm})
 
 
 @login_required(login_url='customer_login')
