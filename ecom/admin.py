@@ -1,19 +1,34 @@
 from django.contrib import admin
-from .models import Customer,Product,Orders,Feedback
-# Register your models here.
+from .models import Customer, Product, Orders, Feedback, Category, Brand
+
+
 class CustomerAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(Customer, CustomerAdmin)
+    list_display = ['user', 'address', 'mobile']
+
 
 class ProductAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(Product, ProductAdmin)
+    list_display = ['name', 'category', 'brand', 'price', 'description']
+
 
 class OrderAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(Orders, OrderAdmin)
+    list_display = ['customer', 'product', 'email', 'address', 'mobile', 'status']
+
 
 class FeedbackAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name', 'feedback', 'date']
+
+
+class BrandAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
+
+admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Feedback, FeedbackAdmin)
-# Register your models here.
+admin.site.register(Product, ProductAdmin)
+admin.site.register(Orders, OrderAdmin)
+admin.site.register(Brand, BrandAdmin)
+admin.site.register(Category, CategoryAdmin)

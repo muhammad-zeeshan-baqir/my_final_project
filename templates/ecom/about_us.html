@@ -3,27 +3,54 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>About Us</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>About Us</title>
 
-  <style media="screen">
-    .footer{
-      position: fixed;
-    }
-  </style>
+    <style media="screen">
+        .footer {
+            position: fixed;
+        }
+    </style>
 </head>
 
 <body style="background: linear-gradient(to right, #b92b27, #1565c0)">
-  {%if request.user.is_authenticated%}
+{% if request.user.is_authenticated %}
     {% include "ecom/customer_navbar.html" %}
-  {%else%}
+{% else %}
     {% include "ecom/navbar.html" %}
-  {%endif%}
-<div class="page-layout" style="display: flex; align-items: center; justify-content: center;min-height: calc(100vh - 254px);F">
-    <h3 style="text-align:center; margin: 0; color: #fff">“I don’t create companies for the sake of creating companies, but to get things done.” </h3>
+{% endif %}
+<div class="page-layout"
+     style="display: flex; align-items: center; justify-content: center;min-height: calc(100vh - 254px);">
+
+    <main style="margin: 0; color: #fff; width: 50%">
+        <h2 style="text-align: center">Welcome to The Sophisticated Appliances</h2>
+        <p style="text-align: center">We are your premier destination for high-quality electronic devices. At The Sophisticated Appliances, we
+            pride ourselves on offering a curated selection of cutting-edge gadgets to enhance your modern
+            lifestyle.
+            Discover a wide range of electronic devices, including smartphones, tablets, laptops, smartwatches, gaming
+            consoles, cameras, audio equipment, and more. We carefully source our products from trusted brands to ensure
+            superior performance and durability.
+            At The Sophisticated Appliances, we prioritize your satisfaction. Our dedicated team is passionate about
+            providing exceptional customer service. Whether you have questions, need assistance, or require technical
+            support, we're here to help.
+            Your privacy and security are our top concerns. We have implemented industry-standard security measures to
+            protect your personal information. Enjoy a hassle-free shopping experience with our user-friendly interface
+            and secure checkout process.
+            We understand the importance of affordability. We strive to offer competitive prices on all our products
+            without compromising on quality. Keep an eye out for our frequent promotions and discounts to get even
+            better deals on your favorite electronic devices.
+            Whether you're a tech enthusiast, a professional, or someone looking for reliable electronic devices, The
+            Sophisticated Appliances has you covered. Elevate your digital experience with our top-of-the-line products
+            and stay ahead of the curve.</p>
+    </main>
+    <footer>
+        <p>Thank you for choosing The Sophisticated Appliances as your trusted source for electronic devices. We look
+            forward to serving you and exceeding your expectations.</p>
+    </footer>
+
 </div>
 
-  {% include "ecom/footer.html" %}
+{% include "ecom/footer.html" %}
 </body>
 </html>

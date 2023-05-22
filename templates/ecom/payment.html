@@ -10,12 +10,27 @@
 .panel-title {display: inline;font-weight: bold;}
 .checkbox.pull-right { margin: 0; }
 .pl-ziro { padding-left: 0px; }
+.credit-card-input {
+      width: 250px;
+    }
 footer{
     position: fixed;
     width: 100%;
     bottom: 0;
 }
 </style>
+    <script>
+    $(function () {
+  // Set form height on document ready
+  setFormHeight();
+
+  // Set up formatting for Credit Card fields
+  $('#credit .cc-number').formatCardNumber();
+  $('#credit .cc-expires').formatCardExpiry();
+  $('#credit .cc-cvc').formatCardCVC();
+});
+    </script>
+
 <div class="container" style="text-align:center; padding-left:300px; padding-top: 100px">
     <div class="row">
         <div class="col-xs-12 col-md-4" style="height:500px; width:600px;">
@@ -37,8 +52,8 @@ footer{
                         <label for="cardNumber">
                             CARD NUMBER</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="cardNumber" placeholder="Valid Card Number"
-                                required autofocus />
+                            <input type="text" class="form-control credit-card-input" id="cardNumber" placeholder="Valid Card Number"
+                                required autofocus  pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" maxlength="16"/>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                         </div>
                     </div>
@@ -47,11 +62,11 @@ footer{
                             <div class="form-group">
                                 <div class="col-xs-6 col-lg-6 pl-ziro">
                                     <label for="expityMonth"> EXPIRY MONTH</label>
-                                    <input type="text" class="form-control" id="expityMonth" placeholder="MM" required />
+                                    <input type="text" class="form-control" id="expityMonth" placeholder="MM" required maxlength="2"/>
                                 </div>
                                 <div class="col-xs-6 col-lg-6 pl-ziro">
                                     <label for="expityMonth"> EXPIRY YEAR</label>
-                                    <input type="text" class="form-control" id="expityYear" placeholder="YY" required />
+                                    <input type="text" class="form-control" id="expityYear" placeholder="YY" required maxlength="2"/>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +74,7 @@ footer{
                             <div class="form-group">
                                 <label for="cvCode">
                                     CV CODE</label>
-                                <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
+                                <input type="password" class="form-control" id="cvCode" placeholder="CV" required maxlength="4"/>
                             </div>
                         </div>
                     </div>

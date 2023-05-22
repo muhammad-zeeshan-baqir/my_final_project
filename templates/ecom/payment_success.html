@@ -4,13 +4,14 @@
 {% block content %}
 <style media="screen">
   .success-page{
-  max-width:300px;
-  display:block;
-  margin: 0 auto;
-  text-align: center;
-      position: relative;
-    top: 50%;
-    transform: perspective(1px) translateY(50%)
+    min-height: calc(100vh - 257px);
+    overflow: auto;
+    max-width: 300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .success-page img{
   max-width:62px;

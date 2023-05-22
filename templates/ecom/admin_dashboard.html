@@ -1,12 +1,12 @@
 {% extends 'ecom/admin_base.html' %}
 {% load static %}
 {% block content %}
-<br>
+
 {%include 'ecom/admin_dashboard_cards.html'%}
-<br><br><br><br><br>
+
 
 <hr><hr>
-<div class="container recent-booking" style="height: calc(100vh - 413px)" >
+<div class="container recent-booking" >
 
     <div class="panel panel-primary" >
       <div class="panel-heading" style="text-align:center;">
@@ -21,7 +21,6 @@
             <th>Product Name</th>
             <th>Product Picture</th>
             <th>Status</th>
-
           </tr>
         </thead>
         {% for product,customer,order in data %}

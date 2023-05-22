@@ -17,6 +17,8 @@ from django.http import HttpResponse
 
 def home_view(request):
     products = Product.objects.all()
+    category = Category.objects.all()
+    brand = Brand.objects.all()
     if 'product_ids' in request.COOKIES:
         product_ids = request.COOKIES['product_ids']
         counter = product_ids.split('|')
@@ -25,7 +27,9 @@ def home_view(request):
         product_count_in_cart = 0
     if request.user.is_authenticated:
         return HttpResponseRedirect('after_login')
-    return render(request, 'ecom/index.html', {'products': products, 'product_count_in_cart': product_count_in_cart})
+    return render(request, 'ecom/index.html',
+                  {'products': products, 'product_count_in_cart': product_count_in_cart, 'category': category,
+                   'brand': brand})
 
 
 def adminclick_view(request):
@@ -312,6 +316,8 @@ def send_feedback_view(request):
 @user_passes_test(is_customer)
 def customer_home_view(request):
     products = Product.objects.all()
+    category = Category.objects.all()
+    brand = Brand.objects.all()
     if 'product_ids' in request.COOKIES:
         product_ids = request.COOKIES['product_ids']
         counter = product_ids.split('|')
@@ -319,7 +325,8 @@ def customer_home_view(request):
     else:
         product_count_in_cart = 0
     return render(request, 'ecom/customer_home.html',
-                  {'products': products, 'product_count_in_cart': product_count_in_cart})
+                  {'products': products, 'product_count_in_cart': product_count_in_cart, 'category': category,
+                   'brand': brand})
 
 
 @login_required(login_url='customer_login')
@@ -397,12 +404,15 @@ def payment_success_view(request):
 def my_order_view(request):
     customer = Customer.objects.get(user_id=request.user.id)
     orders = Orders.objects.all().filter(customer_id=customer)
+    brand = Brand.objects.all()
+    category = Category.objects.all()
     ordered_products = []
     for order in orders:
         ordered_product = Product.objects.all().filter(id=order.product.id)
         ordered_products.append(ordered_product)
 
-    return render(request, 'ecom/my_order.html', {'data': zip(ordered_products, orders)})
+    return render(request, 'ecom/my_order.html',
+                  {'data': zip(ordered_products, orders), 'brand': brand, 'category': category})
 
 
 def render_to_pdf(template_src, context_dict):
@@ -441,7 +451,9 @@ def download_invoice_view(request, orderID, productID):
 @user_passes_test(is_customer)
 def my_profile_view(request):
     customer = Customer.objects.get(user_id=request.user.id)
-    return render(request, 'ecom/my_profile.html', {'customer': customer})
+    brand = Brand.objects.all()
+    category = Category.objects.all()
+    return render(request, 'ecom/my_profile.html', {'customer': customer, 'category': category, 'brand': brand})
 
 
 @login_required(login_url='customer_login')
@@ -502,3 +514,40 @@ def brand_view(request):
             cat.save()
             return render(request, 'ecom/index.html', {'brand': brand})
     return render(request, 'ecom/index.html', {'form': bran})
+
+
+def filter_by_brand(request, brand):
+    products = Product.objects.all().filter(brand__name__icontains=brand)
+    if 'product_ids' in request.COOKIES:
+        product_ids = request.COOKIES['product_ids']
+        counter = product_ids.split('|')
+        product_count_in_cart = len(set(counter))
+    else:
+        product_count_in_cart = 0
+    word = "Searched Result :"
+
+    if request.user.is_authenticated:
+        return render(request, 'ecom/customer_home.html',
+                      {'products': products, 'word': word, 'product_count_in_cart': product_count_in_cart})
+    return render(request, 'ecom/index.html',
+                  {'products': products, 'word': word, 'product_count_in_cart': product_count_in_cart})
+
+
+def filter_by_category(request, category):
+    products = Product.objects.all().filter(category__name__icontains=category)
+    category_list = Category.objects.all()
+    if 'product_ids' in request.COOKIES:
+        product_ids = request.COOKIES['product_ids']
+        counter = product_ids.split('|')
+        product_count_in_cart = len(set(counter))
+    else:
+        product_count_in_cart = 0
+    word = "Searched Result :"
+    print(category_list)
+    if request.user.is_authenticated:
+        return render(request, 'ecom/customer_home.html',
+                      {'products': products, 'word': word, 'product_count_in_cart': product_count_in_cart,
+                       'category': category_list})
+    return render(request, 'ecom/index.html',
+                  {'products': products, 'word': word, 'product_count_in_cart': product_count_in_cart,
+                   'category': category_list})

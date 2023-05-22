@@ -46,23 +46,25 @@
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" style="margin-bottom: 10.8%">
   {% csrf_token %}
   <div class="container register-form" style="margin-top: 196px;height: calc(100vh - 526px);">
     <div class="form">
       <div class="note">
         <p>ADD PRODUCTS</p>
       </div>
-      <div class="form-content">
+      <div class="form-content" >
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               {% render_field productForm.name class="form-control" placeholder="Product Name" %}
             </div>
             <div class="form-group">
-              {% render_field productForm.description class="form-control" placeholder="Description" %}
+              {% render_field productForm.brand class="form-control" placeholder="Brand" %}
             </div>
-
+            <div class="form-group">
+              {% render_field productForm.category class="form-control" placeholder="Category" %}
+            </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
@@ -71,7 +73,9 @@
             <div class="form-group">
               {% render_field productForm.product_image class="form-control" placeholder="product_image" %}
             </div>
-
+            <div class="form-group">
+              {% render_field productForm.description class="form-control" placeholder="Description" %}
+            </div>
 
           </div>
         </div>

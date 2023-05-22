@@ -122,7 +122,7 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 
-LOGIN_REDIRECT_URL = '/afterlogin'
+LOGIN_REDIRECT_URL = '/after_login'
 
 FROM_EMAIL = 'muhammadzeeshanbaqir@gmail.com'
 EMAIL_HOST = "smtp.sendgrid.net"

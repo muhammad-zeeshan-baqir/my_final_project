@@ -5,8 +5,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home_view, name=''),
-    path('afterlogin', views.after_login_view, name='after_login'),
+    path('', views.home_view, name='home'),
+    path('after_login', views.after_login_view, name='after_login'),
     path('logout', LogoutView.as_view(template_name='ecom/logout.html'), name='logout'),
     path('aboutus', views.aboutus_view),
     path('contactus', views.contactus_view, name='contactus'),
@@ -15,7 +15,7 @@ urlpatterns = [
     path('view-feedback', views.view_feedback_view, name='view-feedback'),
 
     path('adminclick', views.adminclick_view),
-    path('adminlogin', LoginView.as_view(template_name='ecom/admin_login.html'), name='admin_login'),
+    path('admin_login', LoginView.as_view(template_name='ecom/admin_login.html'), name='admin_login'),
     path('admin-dashboard', views.admin_dashboard_view, name='admin-dashboard'),
 
     path('view-customer', views.view_customer_view, name='view-customer'),
@@ -32,7 +32,7 @@ urlpatterns = [
     path('update-order/<int:pk>', views.update_order_view, name='update-order'),
 
     path('customersignup', views.customer_signup_view),
-    path('customerlogin', LoginView.as_view(template_name='ecom/customer_login.html'), name='customer_login'),
+    path('customer_login', LoginView.as_view(template_name='ecom/customer_login.html'), name='customer_login'),
     path('customer-home', views.customer_home_view, name='customer-home'),
     path('my-order', views.my_order_view, name='my-order'),
     path('my-profile', views.my_profile_view, name='my-profile'),
@@ -46,5 +46,7 @@ urlpatterns = [
     path('payment-success', views.payment_success_view, name='payment-success'),
     path('add_category', views.category_view, name='add-category'),
     path('add_brand', views.brand_view, name='add-brand'),
+    path('filter_by_category/<slug:category>', views.filter_by_category, name='filter-by-category'),
+    path('filter_by_brand/<slug:brand>', views.filter_by_brand, name='filter-by-brand'),
 
 ]
