@@ -8,13 +8,13 @@ urlpatterns = [
     path('', views.home_view, name='home'),
     path('after_login', views.after_login_view, name='after_login'),
     path('logout', LogoutView.as_view(template_name='ecom/logout.html'), name='logout'),
-    path('aboutus', views.aboutus_view),
+    path('aboutus', views.aboutus_view, name='aboutus'),
     path('contactus', views.contactus_view, name='contactus'),
     path('search', views.search_view, name='search'),
     path('send-feedback', views.send_feedback_view, name='send-feedback'),
     path('view-feedback', views.view_feedback_view, name='view-feedback'),
 
-    path('adminclick', views.adminclick_view),
+    path('adminclick', views.adminclick_view, name='adminclick'),
     path('admin_login', LoginView.as_view(template_name='ecom/admin_login.html'), name='admin_login'),
     path('admin-dashboard', views.admin_dashboard_view, name='admin-dashboard'),
 
@@ -31,7 +31,7 @@ urlpatterns = [
     path('delete-order/<int:pk>', views.delete_order_view, name='delete-order'),
     path('update-order/<int:pk>', views.update_order_view, name='update-order'),
 
-    path('customersignup', views.customer_signup_view),
+    path('customersignup', views.customer_signup_view, name='customersignup'),
     path('customer_login', LoginView.as_view(template_name='ecom/customer_login.html'), name='customer_login'),
     path('customer-home', views.customer_home_view, name='customer-home'),
     path('my-order', views.my_order_view, name='my-order'),
