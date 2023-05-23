@@ -518,6 +518,8 @@ def brand_view(request):
 
 def filter_by_brand(request, brand):
     products = Product.objects.all().filter(brand__name__icontains=brand)
+    brand_list = Brand.objects.all()
+    category = Category.objects.all()
     if 'product_ids' in request.COOKIES:
         product_ids = request.COOKIES['product_ids']
         counter = product_ids.split('|')
@@ -528,13 +530,16 @@ def filter_by_brand(request, brand):
 
     if request.user.is_authenticated:
         return render(request, 'ecom/customer_home.html',
-                      {'products': products, 'word': word, 'product_count_in_cart': product_count_in_cart})
+                      {'products': products, 'word': word, 'product_count_in_cart': product_count_in_cart,
+                       'brand': brand, 'category': category})
     return render(request, 'ecom/index.html',
-                  {'products': products, 'word': word, 'product_count_in_cart': product_count_in_cart})
+                  {'products': products, 'word': word, 'product_count_in_cart': product_count_in_cart, 'brand': brand_list,
+                   'category': category})
 
 
 def filter_by_category(request, category):
     products = Product.objects.all().filter(category__name__icontains=category)
+    brand = Brand.objects.all()
     category_list = Category.objects.all()
     if 'product_ids' in request.COOKIES:
         product_ids = request.COOKIES['product_ids']
@@ -547,7 +552,7 @@ def filter_by_category(request, category):
     if request.user.is_authenticated:
         return render(request, 'ecom/customer_home.html',
                       {'products': products, 'word': word, 'product_count_in_cart': product_count_in_cart,
-                       'category': category_list})
+                       'category': category_list, 'brand': brand})
     return render(request, 'ecom/index.html',
                   {'products': products, 'word': word, 'product_count_in_cart': product_count_in_cart,
-                   'category': category_list})
+                   'category': category_list, 'brand': brand})
