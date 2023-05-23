@@ -98,7 +98,6 @@ def view_customer_view(request):
     return render(request, 'ecom/view_customer.html', {'customers': customers})
 
 
-# admin delete customer
 @login_required(login_url='admin_login')
 def delete_customer_view(request, pk):
     customer = Customer.objects.get(id=pk)
@@ -133,7 +132,6 @@ def admin_products_view(request):
     return render(request, 'ecom/admin_products.html', {'products': products})
 
 
-# admin add product by clicking on floating button
 @login_required(login_url='admin_login')
 def admin_add_product_view(request):
     productForm = ProductForm()
