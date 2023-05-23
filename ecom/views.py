@@ -527,7 +527,6 @@ def filter_by_brand(request, brand):
     else:
         product_count_in_cart = 0
     word = "Searched Result :"
-
     if request.user.is_authenticated:
         return render(request, 'ecom/customer_home.html',
                       {'products': products, 'word': word, 'product_count_in_cart': product_count_in_cart,
